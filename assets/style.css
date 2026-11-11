@@ -1,0 +1,64 @@
+/* MARESAL · maresal.de — fonts are self-hosted, no external requests */
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/newsreader-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/newsreader-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Newsreader";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/newsreader-latin-400-italic.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Newsreader";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/newsreader-latin-ext-400-italic.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/instrument-sans-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/instrument-sans-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Archivo Expanded";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ArchivoExpanded-SemiBold.woff2) format("woff2")}
+
+:root{
+  --siyah:#0B0C09; --kagit:#F1F2E9; --orkide:#D795BA;
+  --gri-1:#40413E; --gri-2:#8D8E8B; --gri-3:#B9BAB3;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"Instrument Sans",Arial,sans-serif;
+  --label:"Archivo Expanded",Arial,sans-serif;
+  --pad:clamp(20px,6vw,80px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--orkide)}
+.label{font-family:var(--label);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+
+/* ---------- Start page (dark) ---------- */
+.home{background:var(--siyah);color:var(--kagit);min-height:100vh;min-height:100svh;display:flex;flex-direction:column;padding:var(--pad)}
+/* Nokta ızgara (grafik dil): 24 px, sağda yoğun, sola doğru solar; sadece koyu zeminde */
+.home{position:relative}
+.home::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(241,242,233,.30) 1.4px,transparent 1.8px);background-size:24px 24px;background-position:12px 12px;-webkit-mask-image:radial-gradient(ellipse 70% 90% at 85% 40%,#000 0%,transparent 75%);mask-image:radial-gradient(ellipse 70% 90% at 85% 40%,#000 0%,transparent 75%)}
+.home>*{position:relative}
+.home header img{display:block;width:clamp(200px,24vw,300px);height:auto;margin:-12px 0 0 -14px}
+.home main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:28px;padding:64px 0;max-width:900px}
+.home main .label{color:var(--gri-2)}
+.home h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,9vw,112px);line-height:1;letter-spacing:-.01em}
+.home h1 i{color:var(--orkide)}
+.home .lead{color:var(--gri-3);max-width:520px;font-size:18px}
+.home .lead a{color:var(--kagit)}
+.tag{display:inline-block;align-self:flex-start;background:var(--orkide);color:var(--siyah);padding:8px 26px;transform:skewX(-24.7deg);margin-left:6px}
+.tag span{display:block;transform:skewX(24.7deg)}
+.home main .tag{color:var(--siyah)}
+.home footer{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between;color:var(--gri-2);border-top:1px solid var(--gri-1);padding-top:20px}
+.home footer nav{display:flex;gap:24px}
+.home footer a{text-decoration:none}
+.home footer a:hover{color:var(--orkide)}
+
+/* ---------- Legal pages (light) ---------- */
+.legal{background:var(--kagit);color:var(--siyah);padding:var(--pad)}
+.legal header{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--siyah);padding-bottom:20px}
+.legal header img{display:block;width:clamp(150px,18vw,210px);height:auto;margin:-8px 0 -8px -10px}
+.legal header nav{display:flex;gap:20px}
+.legal header nav a{text-decoration:none}
+.legal header nav a[aria-current]{color:var(--orkide)}
+.legal main{max-width:720px;padding:56px 0 80px}
+.legal main > .label{color:var(--gri-1);margin-bottom:16px}
+.legal h1{font-family:var(--serif);font-weight:400;font-size:clamp(44px,7vw,80px);line-height:1;margin-bottom:48px}
+.legal h2{font-family:var(--label);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gri-1);margin:40px 0 10px;padding-top:16px;border-top:1px solid #d6d7cd}
+.legal p,.legal li{color:#2b2c29;max-width:66ch}
+.legal p+p{margin-top:12px}
+.legal ul{margin:10px 0 0 20px}
+.legal li+li{margin-top:6px}
+.legal address{font-style:normal}
+.legal footer{border-top:1px solid var(--siyah);padding-top:20px;color:var(--gri-1)}
+.legal footer a{text-decoration:none}
+@media (max-width:560px){.legal header{flex-direction:column;align-items:flex-start}}
