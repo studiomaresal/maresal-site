@@ -9,23 +9,42 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/stamp.css">
 </head>
-<body class="home">
-<header>
-  <img src="assets/logo-kagit.svg" alt="Maresal" width="300" height="82">
+<body class="post">
+<canvas id="grid" aria-hidden="true" data-cx=".5" data-cy=".5" data-rx=".55" data-ry=".75"></canvas>
+
+<header class="bar label">
+  <a href="./" class="mono" aria-label="Maresal – Startseite">
+    <svg viewBox="459 304 199 126" role="img" aria-hidden="true"><polygon fill="currentColor" points="517,304 658,304 600,430 459,430"/></svg>
+  </a>
+  <span class="c hide-s" title="Heilbronn">49°08′30″N · 9°13′20″E</span>
+  <span class="r">Heilbronn<br><b id="clock">--:--</b> <span id="tz">MEZ</span></span>
 </header>
-<main>
-  <p class="label" title="Heilbronn">49°08′30″N · 9°13′20″E</p>
-  <h1>Chaos in<br><i>Ordnung.</i></h1>
-  <p class="lead">Unsere Website entsteht gerade. Bis dahin erreichen Sie uns unter <a href="mailto:kontakt@maresal.de">kontakt@maresal.de</a>.</p>
-  <p class="tag label"><span>Website im Aufbau</span></p>
+
+<main class="stage">
+  <div class="scene" id="scene">
+    <div class="shadow" aria-hidden="true"></div>
+    <button class="stamp" id="stamp" type="button" aria-pressed="false" aria-label="Briefmarke umdrehen">
+      <span class="face front" aria-hidden="true"><span class="in">
+        <span class="row label sm"><span>Deutschland</span></span>
+        <span class="art"><svg viewBox="0 0 658 430"><g fill="#0B0C09"><polygon points="59,0 199,0 199,430 59,430 59,127 0,127"/><polygon points="259,0 399,0 399,430 259,430 259,127 199,127"/><polygon points="459,0 599,0 599,273 459,273 459,127 399,127"/><polygon points="517,304 658,304 600,430 459,430"/></g></svg></span>
+        <span class="row"><span class="label">Maresal</span><span class="val">24</span></span>
+      </span></span>
+      <span class="face back" aria-hidden="true"><span class="in"><span class="date">19.09.<br><i>1921</i></span></span></span>
+    </button>
+    <div class="postmark label" id="postmark" aria-hidden="true"><span>Heilbronn<br><b id="pmdate">12.11.26</b><br>Maresal</span></div>
+  </div>
+  <p class="hint label"><span class="k" aria-hidden="true">↻</span><span id="hinttext">Umdrehen</span></p>
 </main>
-<footer class="label">
-  <span>© 2026 Maresal</span>
-  <nav>
-    <a href="impressum/">Impressum</a>
-    <a href="datenschutz/">Datenschutz</a>
-  </nav>
+
+<footer class="foot label">
+  <p class="slogan">Chaos in<br><i>Ordnung.</i></p>
+  <span class="c hide-s">Website im Aufbau</span>
+  <span class="r"><a href="mailto:kontakt@maresal.de" class="mail">kontakt@maresal.de</a><br><a href="impressum/">Impressum</a> · <a href="datenschutz/">Datenschutz</a></span>
 </footer>
+
+<script src="assets/grid.js"></script>
+<script src="assets/stamp.js"></script>
 </body>
 </html>

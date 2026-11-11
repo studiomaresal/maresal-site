@@ -24,10 +24,10 @@ a:hover{color:var(--orkide)}
 
 /* ---------- Start page (dark) ---------- */
 .home{background:var(--siyah);color:var(--kagit);min-height:100vh;min-height:100svh;display:flex;flex-direction:column;padding:var(--pad)}
-/* Nokta ızgara (grafik dil): 24 px, sağda yoğun, sola doğru solar; sadece koyu zeminde */
+/* Nokta ızgara (grafik dil): 24 px, sağda yoğun, sola doğru solar; canlı: imleç düzeni bozar, yay geri toplar (assets/grid.js) */
 .home{position:relative}
-.home::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(241,242,233,.30) 1.4px,transparent 1.8px);background-size:24px 24px;background-position:12px 12px;-webkit-mask-image:radial-gradient(ellipse 70% 90% at 85% 40%,#000 0%,transparent 75%);mask-image:radial-gradient(ellipse 70% 90% at 85% 40%,#000 0%,transparent 75%)}
-.home>*{position:relative}
+#grid{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:0}
+.home>*:not(#grid){position:relative;z-index:1}
 .home header img{display:block;width:clamp(200px,24vw,300px);height:auto;margin:-12px 0 0 -14px}
 .home main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:28px;padding:64px 0;max-width:900px}
 .home main .label{color:var(--gri-2)}
@@ -62,3 +62,6 @@ a:hover{color:var(--orkide)}
 .legal footer{border-top:1px solid var(--siyah);padding-top:20px;color:var(--gri-1)}
 .legal footer a{text-decoration:none}
 @media (max-width:560px){.legal header{flex-direction:column;align-items:flex-start}}
+.legal .mono-l{display:block;width:62px;color:var(--siyah)}
+.legal .mono-l svg{display:block;width:100%;height:auto}
+.legal .mono-l:hover{color:var(--orkide)}

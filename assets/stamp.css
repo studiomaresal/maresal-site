@@ -1,0 +1,70 @@
+/* MARESAL · Startseite „Pul“ — Briefmarke mit Rückseite 19.09.1921 */
+.post{background:var(--siyah);color:var(--kagit);min-height:100vh;min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;padding:28px var(--pad) 30px;overflow:hidden;position:relative}
+#grid{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:0}
+.post>*:not(#grid){position:relative;z-index:1}
+.post a{text-decoration:none}
+.post .label{color:var(--gri-2)}
+.post b{color:var(--kagit);font-weight:600}
+
+/* Kopfzeile */
+.bar{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:start;line-height:1.75}
+.bar .c{text-align:center;padding-top:12px}
+.bar .r,.foot .r{text-align:right}
+.mono{color:var(--kagit);display:inline-block;width:44px;margin-top:10px}
+.mono svg{display:block;width:100%;height:auto}
+.mono:hover{color:var(--orkide)}
+
+/* Bühne */
+.stage{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;padding:24px 0}
+.scene{--w:clamp(220px,23vw,330px);width:var(--w);aspect-ratio:330/420;position:relative;perspective:1600px}
+.shadow{position:absolute;left:8%;right:8%;bottom:-6%;height:14%;background:#000;filter:blur(26px);opacity:.7;border-radius:50%;transform:translateZ(0)}
+.stamp{all:unset;cursor:pointer;position:absolute;inset:0;transform-style:preserve-3d;will-change:transform;-webkit-tap-highlight-color:transparent}
+.stamp:focus-visible{outline:2px solid var(--orkide);outline-offset:14px}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  --p:calc(var(--w) * .021);--g:calc(var(--w) * .066);
+  -webkit-mask:radial-gradient(circle var(--p) at 50% 50%,transparent 98%,#000) calc(var(--g) / -2) calc(var(--g) / -2)/var(--g) var(--g),linear-gradient(#000,#000) calc(var(--g) / 2) calc(var(--g) / 2)/calc(100% - var(--g)) calc(100% - var(--g)) no-repeat;
+          mask:radial-gradient(circle var(--p) at 50% 50%,transparent 98%,#000) calc(var(--g) / -2) calc(var(--g) / -2)/var(--g) var(--g),linear-gradient(#000,#000) calc(var(--g) / 2) calc(var(--g) / 2)/calc(100% - var(--g)) calc(100% - var(--g)) no-repeat}
+.front{background:#F1F2E9;color:#0B0C09}
+.back{background:#E7E8DD;color:#0B0C09;transform:rotateY(180deg)}
+/* leichte Papierstruktur */
+.face::after{content:"";position:absolute;inset:0;opacity:.35;mix-blend-mode:multiply;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .4 0 0 0 0 .35 0 0 0 .18 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.in{position:absolute;inset:calc(var(--w) * .067);border:1.5px solid #0B0C09;display:flex;flex-direction:column;justify-content:space-between;padding:calc(var(--w) * .055)}
+.back .in{border-style:dashed;border-width:1px;justify-content:center;align-items:center}
+.row{display:flex;justify-content:space-between;align-items:baseline}
+.front .label{color:#0B0C09}
+.label.sm{font-size:calc(var(--w) * .03)}
+.front .row:last-child .label{font-size:calc(var(--w) * .036)}
+.art{flex:1;display:flex;align-items:center;justify-content:center}
+.art svg{width:62%;height:auto}
+.val{font-family:var(--serif);font-size:calc(var(--w) * .135);line-height:.85}
+.date{font-family:var(--serif);font-size:calc(var(--w) * .215);line-height:.95;letter-spacing:-.02em;text-align:center}
+.date i{color:#B4628F}
+
+/* Poststempel – liegt über der Marke, verschwindet beim Umdrehen */
+.postmark{position:absolute;left:80%;top:-15%;width:calc(var(--w) * .46);aspect-ratio:1;border:2px solid rgba(241,242,233,.6);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;transform:rotate(-14deg);color:rgba(241,242,233,.8)!important;font-size:calc(var(--w) * .03);line-height:1.6;mix-blend-mode:difference;pointer-events:none;transition:opacity .4s}
+.postmark b{font-size:calc(var(--w) * .046);letter-spacing:.04em}
+.postmark::before{content:"";position:absolute;left:92%;top:30%;width:calc(var(--w) * .6);height:28%;background:repeating-linear-gradient(0deg,rgba(241,242,233,.5) 0 2px,transparent 2px calc(var(--w) * .036));-webkit-mask:linear-gradient(90deg,#000,transparent);mask:linear-gradient(90deg,#000,transparent)}
+.flipped .postmark{opacity:0}
+
+.hint{display:flex;gap:10px;align-items:center;margin:0}
+.hint .k{display:inline-flex;width:26px;height:26px;border:1px solid var(--gri-1);border-radius:50%;align-items:center;justify-content:center;font-size:14px;color:var(--kagit);transition:transform .8s cubic-bezier(.7,0,.2,1)}
+.flipped .hint .k{transform:rotate(180deg)}
+
+/* Fußzeile */
+.foot{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:end;line-height:1.75}
+.foot .c{text-align:center}
+.slogan{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(36px,3.9vw,56px);line-height:.95;letter-spacing:-.01em;text-transform:none;color:var(--kagit)}
+.slogan i{color:var(--orkide)}
+.foot .mail{color:var(--kagit)}
+.foot a:hover{color:var(--orkide)}
+
+@media (max-width:720px){
+  .post{padding:22px 20px 24px}
+  .bar{grid-template-columns:1fr 1fr}
+  .foot{grid-template-columns:1fr;gap:18px}
+  .foot .r{text-align:left}
+  .hide-s{display:none}
+  .scene{--w:min(62vw,300px)}
+  .mono{width:38px}
+}
+@media (prefers-reduced-motion:reduce){.stamp{transition:none!important}}
