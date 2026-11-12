@@ -23,10 +23,24 @@
 
   function setFlipped(on) {
     flipTarget = on ? 180 : 0;
+    if (!on && typeof uvOff === 'function') uvOff();
     body.classList.toggle('flipped', on);
     stamp.setAttribute('aria-pressed', on ? 'true' : 'false');
   }
-  stamp.addEventListener('click', () => setFlipped(flipTarget === 0));
+  let suppressClick = false;
+  stamp.addEventListener('click', e => { if (suppressClick) { suppressClick = false; e.preventDefault(); return; } setFlipped(flipTarget === 0); });
+
+  // Verborgener UV-Druck auf der Rückseite
+  const uv = document.getElementById('uv');
+  function uvAt(x, y) {
+    const r = scene.getBoundingClientRect();
+    uv.style.setProperty('--mx', ((x - r.left) / r.width * 100).toFixed(2) + '%');
+    uv.style.setProperty('--my', ((y - r.top) / r.height * 100).toFixed(2) + '%');
+    uv.classList.add('on');
+  }
+  function uvOff() { uv.classList.remove('on'); }
+  stamp.addEventListener('pointermove', e => { if (flipTarget === 180 && e.pointerType !== 'touch') uvAt(e.clientX, e.clientY); });
+  stamp.addEventListener('pointerleave', uvOff);
 
   // Neigen mit Maus
   window.addEventListener('pointermove', e => {
@@ -42,11 +56,19 @@
 
   // Wischen auf dem Handy
   let sx = null, sy = null;
-  stamp.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  let tmoved = false;
+  stamp.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; tmoved = false; if (flipTarget === 180) uvAt(sx, sy); }, { passive: true });
+  stamp.addEventListener('touchmove', e => {
+    if (flipTarget !== 180 || sx === null) return;
+    const t = e.touches[0];
+    if (Math.hypot(t.clientX - sx, t.clientY - sy) > 8) tmoved = true;
+    e.preventDefault(); uvAt(t.clientX, t.clientY);
+  }, { passive: false });
   stamp.addEventListener('touchend', e => {
     if (sx === null) return;
     const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
-    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { e.preventDefault(); setFlipped(flipTarget === 0); }
+    if (flipTarget === 180) { uvOff(); if (tmoved) suppressClick = true; sx = sy = null; return; }
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { e.preventDefault(); setFlipped(true); }
     sx = sy = null;
   });
 
